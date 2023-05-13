@@ -6,8 +6,16 @@
             <%= link_to 'Articles', articles_path, class:"hover:text-red-400", id:"test" %> |  
             <%= link_to 'About', about_path, class:"hover:text-red-400" %> 
         </div>
-        <div class="hover:text-red-400 mt-10 text-2xl">
-            <%= link_to "Sign up", signup_path %>
-        </div>
+        <% if logged_in? %>
+            <div class="mt-10 text-2xl">
+                <%= link_to current_user.username, user_path(current_user), class: "hover:text-red-400" %>
+                <%= link_to "Logout", logout_path, data: { "turbo-method": :delete }, class: "hover:text-red-400" %>
+            </div>
+        <% else %>
+            <div class="flex gap-5 mt-10 text-2xl">
+                <%= link_to "Login", login_path, class: "hover:text-red-400" %>
+                <%= link_to "Sign up", signup_path, class: "hover:text-red-400" %>
+            </div>
+        <% end %>
     </div>
 </div>
