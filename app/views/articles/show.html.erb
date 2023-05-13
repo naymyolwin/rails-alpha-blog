@@ -4,6 +4,9 @@
 <h3><%= @article.user.username %></h3>
 
 
-    <%= link_to 'Back', articles_path %> |
-    <%= link_to 'Edit', edit_article_path(@article) %> |
-    <%= link_to 'Delete', article_path(@article), data: { "turbo-method": :delete, "turbo_confirm": "Are you sure?" } %>
+    <%= link_to 'Back', articles_path %>
+    <% if logged_in? && @article.user == current_user %>
+     |
+        <%= link_to 'Edit', edit_article_path(@article) %> |
+        <%= link_to 'Delete', article_path(@article), data: { "turbo-method": :delete, "turbo_confirm": "Are you sure?" } %>
+    <% end %>
